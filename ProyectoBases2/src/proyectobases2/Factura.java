@@ -53,6 +53,7 @@ public class Factura extends javax.swing.JFrame {
 
         jLabel6.setText("Costo:");
 
+        jButton1.setBackground(new java.awt.Color(153, 0, 0));
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +61,7 @@ public class Factura extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 102, 51));
         jButton2.setText("Volver al Catálogo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -44,7 +44,7 @@ public class Producto extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre Producto");
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setBackground(new java.awt.Color(0, 102, 51));
         jButton1.setText("Agregar al Carrito");
 
         jLabel2.setText("Descripción:");
