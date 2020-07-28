@@ -119,20 +119,20 @@ insert into Producto_X_Sucursal (idProductoXSucursal, fk_idSucursal, fk_idProduc
 insert into Producto_X_Sucursal (idProductoXSucursal, fk_idSucursal, fk_idProducto, cantidadDisponible) values (35, 3, 11, 79);
 insert into Producto_X_Sucursal (idProductoXSucursal, fk_idSucursal, fk_idProducto, cantidadDisponible) values (36, 3, 12, 99);
 
-insert into Factura (idFactura, fk_idCliente, fk_idTipoEntrega, fechaVenta, montoTotal) values (1, 401120976, 2, '11/14/2019', 4425000);
-insert into Factura (idFactura, fk_idCliente, fk_idTipoEntrega, fechaVenta, montoTotal) values (2, 504930280, 2, '5/25/2020', 1550000);
-insert into Factura (idFactura, fk_idCliente, fk_idTipoEntrega, fechaVenta, montoTotal) values (3, 407280521, 1, '6/30/2020', 4150000);
+insert into Factura (idFactura, fk_idCliente, fk_idSucursal, fk_idTipoEntrega, fechaVenta) values (1, 401120976, 3, 2, '11/14/2019');
+insert into Factura (idFactura, fk_idCliente, fk_idSucursal, fk_idTipoEntrega, fechaVenta) values (2, 504930280, 1, 2, '5/25/2020');
+insert into Factura (idFactura, fk_idCliente, fk_idSucursal, fk_idTipoEntrega, fechaVenta) values (3, 407280521, 2, 1, '6/30/2020');
 
-insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (1, 1, 22, 3, 1650000);
-insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (2, 1, 13, 5, 1625000);
-insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (3, 1, 18, 2, 1100000);
-insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (4, 1, 19, 1, 50000);
+insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (1, 1, 10, 3, 1650000);
+insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (2, 1, 1, 5, 1625000);
+insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (3, 1, 6, 2, 1100000);
+insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (4, 1, 7, 1, 50000);
 insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (7, 2, 7, 2, 100000);
 insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (8, 2, 5, 1, 150000);
 insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (9, 2, 1, 4, 1300000);
-insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (10, 3, 35, 3, 1050000);
-insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (11, 3, 30, 2, 1100000);
-insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (12, 3, 27, 4, 2000000);
+insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (10, 3, 11, 3, 1050000);
+insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (11, 3, 6, 2, 1100000);
+insert into LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal) values (12, 3, 3, 4, 2000000);
 
 insert into ComisionEmpleado (idComision, fk_idEmpleado, fk_idFactura) values (1, 5, 1);
 insert into ComisionEmpleado (idComision, fk_idEmpleado, fk_idFactura) values (2, 8, 2);
