@@ -5,6 +5,8 @@
  */
 package proyectobases2;
 
+import java.awt.Color;
+
 /**
  *
  * @author Victor Alonso
@@ -16,6 +18,7 @@ public class Pago extends javax.swing.JFrame {
      */
     public Pago() {
         initComponents();
+        this.getContentPane().setBackground(Color.white);
     }
 
     /**
