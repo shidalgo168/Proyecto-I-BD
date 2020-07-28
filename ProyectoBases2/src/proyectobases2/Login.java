@@ -50,7 +50,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña:");
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 102));
+        jButton1.setBackground(new java.awt.Color(0, 102, 51));
         jButton1.setText("Iniciar Sesión");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +58,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 0));
+        jButton2.setBackground(new java.awt.Color(0, 51, 102));
         jButton2.setText("Registrarse");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +146,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new Producto().setVisible(true);
+        new CatálogoProducto().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
