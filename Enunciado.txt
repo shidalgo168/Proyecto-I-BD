@@ -1,0 +1,23 @@
+Una mueblería lo ha contratado para crear todo un Sistema para automatizar y mejorar todos sus procesos.
+
+La mueblería tiene un taller que suple los productos a diferentes sucursales del país.  El taller tiene su propia base de datos, y existen 3 sucursales en bases de datos aparte, donde se les debe hacer una partición horizontal.
+
+Existe un centro de atención al cliente, éste Sistema se encuentra en un motor diferente a las bases de datos de la sucursal, pero debe poder manejar datos del cliente para poder hacerle llamadas cuando cumple annos y ofrecerle promociones, o llamadas cada vez que hay un mueble nuevo, y se le puede ofrecer un cupon de descuento digital.  Cuando un cliente viene a la tienda a comprar se debe poder ver en el sistemaa de la sucursal que el cliente tiene un cupon de descuento que le dieron del centro de atención.
+
+Cada suscursal y taller tiene un gerente y   un conjunto de empleados diferentes como cajeros, mensajeros, vendedores, persona de servicio al cliente, ebanistas, tapiceros, etc, para cada uno de los empleados se va a manejar sus datos personales y una foto para major identificación, fecha de contratación y salario.
+
+ Para cada producto, se debe manejar la descripción, precio, un texto breve que indique cosas asi como que es construido en maderas x o y, y con las mas finas pieles, etc etc.
+
+Un cliente puede entrar a hacer un browse del sitio donde ven los diferentes productos y pueden realizar también compras online.
+
+Un cliente debe de tener todos los datos necesarios asociados a un perfil para poder ingresar al sitio web, inclusive su ubicación (pueden hacer su propio mapa para el manejo del Sistema).
+
+Un cliente puede pedir un servicio de delivery para sus muebles en caso de requerirlo, por lo que es importante encontrar la sucursal mas cercana para hacer el envío desde ahí. 
+
+Cuando el producto llega al cliente, éste debe realizar una evaluación y firmar un Recibido Conforme.
+
+Los pagos se pueden hacer por medio de diferentes métodos.
+
+Los empleados que son vendedores, reciben un porcentaje de las ventas realizadas.
+
+Un gerente general puede obtener reportes/información respecto a ventas por sucursal o generales, montos y cantidad de productos vendidos por sucursal o generales, en rangos de tiempo, por vendedor.  Ganancias por sucursal, por fechas, productos y/o generales.  
