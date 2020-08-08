@@ -36,6 +36,6 @@ create table ServicioCliente.Cupon
     porcentaje float not null,
     idCliente int not null,
     fechaExpiracion date not null,
-    estado varchar (10) not null,
+    estado bit not null,
     primary key (idCupon)
 ) engine = InnoDB;
