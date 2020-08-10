@@ -13,12 +13,12 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE verClientes
+CREATE PROCEDURE verCatalogo
 AS
 BEGIN
 	SET NOCOUNT ON;
 
-    SELECT idCliente, fk_idTelefono, nombre, apellido1, apellido2, correo, fechaCumpleanhos, direccion, foto, contrasenha
-	FROM Cliente
+    SELECT idProducto, nombre, descripcion, foto, precio
+	FROM Producto
 END
 GO

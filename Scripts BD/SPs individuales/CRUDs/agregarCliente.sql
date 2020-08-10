@@ -22,23 +22,22 @@ CREATE PROCEDURE agregarCliente
 	@direccion geography, @foto image, @contrasenha varchar(50)
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	BEGIN TRY
-	BEGIN TRAN
-		INSERT INTO Cliente(idCliente, fk_idTelefono, nombre, apellido1, apellido2, correo, fechaCumpleanhos, direccion, foto, contrasenha)
-		VALUES(@idCliente, @fk_idTelefono, @nombre, @apellido1,	@apellido2, @correo, @fechaCumpleanhos, @direccion, @foto, @contrasenha)
-	COMMIT TRAN
-	END TRY
+	IF EXISTS (SELECT correo FROM Cliente WHERE correo=@correo UNION SELECT correo FROM Empleado WHERE correo=@correo)
+		RAISERROR('Ya existe este correo en el sistema', 3,1);
+	ELSE
+	BEGIN
+		BEGIN TRY
+		BEGIN TRAN
+			INSERT INTO Cliente(idCliente, fk_idTelefono, nombre, apellido1, apellido2, correo, fechaCumpleanhos, direccion, foto, contrasenha)
+			VALUES(@idCliente, @fk_idTelefono, @nombre, @apellido1,	@apellido2, @correo, @fechaCumpleanhos, @direccion, @foto, @contrasenha);
+		COMMIT TRAN
+		END TRY
 
-	BEGIN CATCH
-		ROLLBACK TRAN
-		RAISERROR('Error al agregar los datos de un cliente', 3,1);
-	END CATCH
-
-
-		
+		BEGIN CATCH
+			ROLLBACK TRAN
+			RAISERROR('Error al agregar los datos de un cliente', 3,1);
+		END CATCH
+	END
 END
-GO

@@ -24,18 +24,22 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-    BEGIN TRY
-	BEGIN TRAN
-		INSERT INTO Empleado(idEmpleado, fk_idSucursal, fk_idTipoEmpleado, fk_idTelefono, nombre,
-						apellido1, apellido2, cedula, correo, fechaContratacion, foto, contrasenha)
-		VALUES(@idEmpleado, @fk_idSucursal, @fk_idTipoEmpleado, @fk_idTelefono, @nombre,
-					@apellido1, @apellido2, @cedula, @correo, @fechaContratacion, @foto, @contrasenha)
-	COMMIT TRAN
-	END TRY
+	IF EXISTS (SELECT correo FROM Cliente WHERE correo=@correo UNION SELECT correo FROM Empleado WHERE correo=@correo)
+		RAISERROR('Ya existe este correo en el sistema', 3,1);
+	ELSE
+	BEGIN
+		BEGIN TRY
+		BEGIN TRAN
+			INSERT INTO Empleado(idEmpleado, fk_idSucursal, fk_idTipoEmpleado, fk_idTelefono, nombre,
+							apellido1, apellido2, cedula, correo, fechaContratacion, foto, contrasenha)
+			VALUES(@idEmpleado, @fk_idSucursal, @fk_idTipoEmpleado, @fk_idTelefono, @nombre,
+						@apellido1, @apellido2, @cedula, @correo, @fechaContratacion, @foto, @contrasenha)
+		COMMIT TRAN
+		END TRY
 
-	BEGIN CATCH
-		ROLLBACK TRAN
-		RAISERROR('Error al agregar un empleado al sistema', 3,1);
-	END CATCH
+		BEGIN CATCH
+			ROLLBACK TRAN
+			RAISERROR('Error al agregar un empleado al sistema', 3,1);
+		END CATCH
+	END
 END
-GO
