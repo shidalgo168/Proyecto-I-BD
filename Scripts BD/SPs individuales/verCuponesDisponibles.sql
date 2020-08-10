@@ -15,7 +15,7 @@ begin
 		begin
 			
 			select idCupon, porcentaje, fechaExpiracion
-			from openquery (MYSQL, 'select * from serviciocliente.Cupon') where idCliente = @idC and estado = 1
+			from openquery (MYSQL, 'select * from serviciocliente.Cupon') where idCliente = @idC and estado = 1 and fechaExpiracion >= GETDATE()
 		end
 	else
 		print('Cliente no existe')

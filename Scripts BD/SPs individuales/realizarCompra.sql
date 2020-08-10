@@ -1,14 +1,6 @@
--- ================================================
--- Template generated from Template Explorer using:
--- Create Procedure (New Menu).SQL
---
--- Use the Specify Values for Template Parameters 
--- command (Ctrl-Shift-M) to fill in the parameter 
--- values below.
---
--- This block of comments will not be included in
--- the definition of the procedure.
--- ================================================
+USE [proyectoBases]
+GO
+/****** Object:  StoredProcedure [dbo].[realizarCompra]    Script Date: 8/9/2020 10:21:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,8 +10,9 @@ GO
 -- Create date: 7/8/2020
 -- Description:	Genera la factura dado un pedido en linea. Entradas: tabla del Pedido, tipo de la venta, cedula del cliente
 -- =============================================
-CREATE PROCEDURE realizarCompra
-	@pedido dbo.CarritoPedidoTABLE READONLY, @tipoVenta int, @clcedula int, @idEmpleado int
+CREATE PROCEDURE [dbo].[realizarCompra]
+	@pedido dbo.CarritoPedidoTABLE READONLY, @tipoVenta int,
+	@clcedula int, @idEmpleado int, @idCupon int
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -31,7 +24,7 @@ BEGIN
 	END;
 
 	DECLARE @idFactura int, @idSucursal int, @idLineaFactura int,
-			@idComision int, @cldir geography;
+			@idComision int, @cldir geography, @descuentoCupon float;
 
 	SELECT @cldir = direccion FROM Cliente WHERE @clcedula=idCliente
 	
@@ -61,6 +54,11 @@ BEGIN
 	ORDER BY idComision DESC;
 	SET @idComision = @idComision+1;
 
+	IF @idCupon IS NOT NULL
+		SET @descuentoCupon = (select porcentaje from openquery (MYSQL, 'select * from serviciocliente.Cupon') where idCupon=@idCupon);
+	ELSE
+		SET @descuentoCupon = 1;
+
 
 	DECLARE @totalProductosPedido int, @productoActual int = 1, @idProdTmp int, @cantProdTmp int, @precioTmp int;
 	-- Obtiene la cantidad total de productos en el pedido
@@ -88,7 +86,7 @@ BEGIN
 				WHERE fk_idSucursal=@idSucursal AND fk_idProducto=@idProdTmp;
 
 				INSERT INTO LineaFactura (idLineaFactura, fk_idFactura, fk_idProducto, cantidad, subtotal)
-				VALUES(@idLineaFactura, @idFactura, @idProdTmp, @cantProdTmp, @precioTmp*@cantProdTmp);
+				VALUES(@idLineaFactura, @idFactura, @idProdTmp, @cantProdTmp, (@precioTmp*@cantProdTmp) - (@precioTmp*@cantProdTmp)*@descuentoCupon);
 			END
 			ELSE
 				RAISERROR('No hay suficientes productos en la sucursal mas cercana', 20,1);
@@ -96,6 +94,9 @@ BEGIN
 			SET @idLineaFactura = @idLineaFactura + 1;
 			SET @productoActual = @productoActual + 1;
 		END;
+
+		IF @idCupon IS NOT NULL
+			EXEC dbo.cambiarEstadoCupon @idC=@idCupon;
 
 		-- Si a la compra le entra un valor en @idEmpleado, significa que ese vendedor deber tener cierta comisión de la venta
 		IF @idEmpleado IS NOT NULL
@@ -112,5 +113,3 @@ BEGIN
 		RAISERROR('Error inesperado al agregar la informacion de las facturas', 3,1);
 	END CATCH
 END
-GO
-
