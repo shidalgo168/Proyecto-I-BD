@@ -17,9 +17,9 @@ GO
 -- Description:	CRUD Clientes. Modificar todos los posibles valores de un cliente
 -- =============================================
 CREATE PROCEDURE modificarCliente
-	@idCliente int, @fk_idTelefono int, @nombre varchar(50), @apellido1 varchar(50),
-	@apellido2 varchar(50), @correo varchar(60), @fechaCumpleanhos date,
-	@direccion geography, @foto image, @contrasenha varchar(50)
+	@idCliente int , @fk_idTelefono int =NULL, @nombre varchar(50) =NULL, @apellido1 varchar(50) =NULL,
+	@apellido2 varchar(50) =NULL, @correo varchar(60) =NULL, @fechaCumpleanhos date =NULL,
+	@direccion geography =NULL, @foto image =NULL, @contrasenha varchar(50) =NULL
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from

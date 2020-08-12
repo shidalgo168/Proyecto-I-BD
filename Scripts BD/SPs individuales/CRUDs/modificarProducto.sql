@@ -17,8 +17,8 @@ GO
 -- Description:	CRUD Productos. Modificar los atributos de un producto especifico
 -- =============================================
 CREATE PROCEDURE modificarProducto
-	@idProducto int, @nombre varchar(50), @descripcion varchar(150),
-	@foto image, @precio int
+	@idProducto int, @nombre varchar(50)  = NULL, @descripcion varchar(150)  = NULL, 
+	@foto image  = NULL, @precio int  = NULL
 AS
 BEGIN
 	SET NOCOUNT ON;

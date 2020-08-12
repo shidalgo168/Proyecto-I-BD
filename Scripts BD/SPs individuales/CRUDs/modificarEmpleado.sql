@@ -19,9 +19,9 @@ GO
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE modificarEmpleado
-	@idEmpleado int, @fk_idSucursal int, @fk_idTipoEmpleado int, @fk_idTelefono int,
-	@nombre varchar(50), @apellido1 varchar(50), @apellido2 varchar(50), @cedula varchar(60),
-	@correo varchar(60), @fechaContratacion date, @foto image, @contrasenha varchar(50)
+	@idEmpleado int, @fk_idSucursal int  = NULL, @fk_idTipoEmpleado int  = NULL, @fk_idTelefono int  = NULL,
+	@nombre varchar(50)  = NULL, @apellido1 varchar(50) = NULL, @apellido2 varchar(50)= NULL, @cedula varchar(60)= NULL,
+	@correo varchar(60)= NULL, @fechaContratacion date = NULL, @foto image = NULL, @contrasenha varchar(50) = NULL
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
