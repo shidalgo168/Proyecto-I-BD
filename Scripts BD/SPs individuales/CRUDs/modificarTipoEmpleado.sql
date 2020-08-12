@@ -11,8 +11,8 @@ GO
 
 create procedure [dbo].[modificarTipoEmpleado]
 @idTipoEmpleado int,
-@nombre varchar(50),
-@salario decimal(12,2)
+@nombre varchar(50) = NULL,
+@salario decimal(12,2) = NULL
 as
 begin 
 	SET NOCOUNT ON;
@@ -32,5 +32,3 @@ begin
 	END CATCH
 end
 GO
-
-
