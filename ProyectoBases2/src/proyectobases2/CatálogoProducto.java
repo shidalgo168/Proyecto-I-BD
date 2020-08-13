@@ -6,6 +6,16 @@
 package proyectobases2;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +28,7 @@ public class CatálogoProducto extends javax.swing.JFrame {
      */
     public CatálogoProducto() {
         initComponents();
+        conexionProducto();
         this.getContentPane().setBackground(Color.white);
     }
 
@@ -30,18 +41,9 @@ public class CatálogoProducto extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
@@ -50,46 +52,50 @@ public class CatálogoProducto extends javax.swing.JFrame {
         jRadioButton9 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProductos = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Catálogo de Productos");
-
-        jLabel2.setText("Imagen Producto");
-
-        jLabel3.setText("Imagen Producto");
-
-        jLabel4.setText("Imagen Producto");
-
-        jLabel5.setText("Imagen Producto");
-
-        jLabel6.setText("Imagen Producto");
-
-        jLabel7.setText("Imagen Producto");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 12, 127, -1));
 
         jLabel8.setText("Imagen Producto");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 715, -1, -1));
 
         jLabel9.setText("Imagen Producto");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 715, -1, -1));
 
         jLabel10.setText("Imagen Producto");
-
-        jRadioButton1.setText("jRadioButton1");
-
-        jRadioButton2.setText("jRadioButton2");
-
-        jRadioButton3.setText("jRadioButton3");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 715, -1, -1));
 
         jRadioButton4.setText("jRadioButton4");
+        jPanel1.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 691, 92, -1));
 
         jRadioButton5.setText("jRadioButton5");
+        jPanel1.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 691, 92, -1));
 
         jRadioButton6.setText("jRadioButton6");
+        jPanel1.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 691, 92, -1));
 
         jRadioButton7.setText("jRadioButton7");
+        jPanel1.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 748, 92, -1));
 
         jRadioButton8.setText("jRadioButton8");
+        jPanel1.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 748, 92, -1));
 
         jRadioButton9.setText("jRadioButton9");
+        jPanel1.add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 748, 92, -1));
 
         jButton1.setBackground(new java.awt.Color(153, 0, 0));
         jButton1.setText("Salir");
@@ -98,6 +104,7 @@ public class CatálogoProducto extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 847, 73, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 102, 51));
         jButton2.setText("Ver Producto");
@@ -106,107 +113,51 @@ public class CatálogoProducto extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 847, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel8)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(251, 251, 251)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                .addGap(176, 176, 176)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(76, 76, 76))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(359, 359, 359)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(164, 164, 164)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
-                .addGap(118, 118, 118)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton7)
-                    .addComponent(jRadioButton8)
-                    .addComponent(jRadioButton9))
-                .addGap(76, 76, 76)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)))
-        );
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre", "Descripción", "Precio"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaProductos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(0, 51, 102));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Ver Producto");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, -1));
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Seleccionar un producto para ver:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 170, -1));
+
+        jButton4.setBackground(new java.awt.Color(153, 0, 0));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Salir");
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, -1, -1));
+
+        jButton5.setBackground(new java.awt.Color(0, 51, 102));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Mi Perfil");
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(0, 102, 51));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Ver Carrito");
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 550, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,16 +170,80 @@ public class CatálogoProducto extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(863, 651));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void conexionProducto()
+    {
+        String jdbcDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String connectionUrl = "jdbc:sqlserver://localhost\\MSSQLSERVER01;database=proyectoBases;integratedSecurity=true;";
+        try {
+            Class.forName(jdbcDriver);
+            
+        } catch (ClassNotFoundException ex) {
+            System.out.println("No funciona");
+        }
+        try (Connection con = DriverManager.getConnection(connectionUrl);) 
+        {
+            System.out.println("Conectado");
+        
+            Statement m_Statement = con.createStatement();
+            String query = "SELECT * FROM dbo.Producto";
+
+            ResultSet m_ResultSet = m_Statement.executeQuery(query);
+            DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
+            model.setRowCount(0);
+            
+            ArrayList<ArrayList<String>> listaProducto = new ArrayList<>();
+            ArrayList<String> listaTemporal;
+            while (m_ResultSet.next()) 
+            {
+                listaTemporal = new ArrayList<>();
+                listaTemporal.add(m_ResultSet.getString("nombre"));
+                listaTemporal.add(m_ResultSet.getString("descripcion"));
+                listaTemporal.add(m_ResultSet.getString("precio"));
+                
+                listaProducto.add(listaTemporal);
+
+            }
+            
+            
+
+            
+            for (int i=0; i < listaProducto.size(); i++)
+            {
+                
+                 String nombre = listaProducto.get(i).get(0);
+                 String descripcion = listaProducto.get(i).get(1);
+                 String producto = listaProducto.get(i).get(2);
+
+                 Object [] data = {nombre, descripcion, producto};
+
+                 model.addRow(data);
+                            
+                
+               
+            }
+            
+            
+   
+            //return connection;
+        }
+        // Handle any errors that may have occurred.
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        //return null;
+    }
+    
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         new Login().setVisible(true);
@@ -272,6 +287,7 @@ public class CatálogoProducto extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CatálogoProducto().setVisible(true);
+                
             }
         });
     }
@@ -279,25 +295,24 @@ public class CatálogoProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 }

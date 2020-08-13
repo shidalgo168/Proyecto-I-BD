@@ -5,6 +5,21 @@
  */
 package proyectobases2;
 
+/*
+(1, 'Camarote', 'Madera Fina', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\camarote.jpg', 325000);
+(2, 'Comedor', 'Comedor para 4 personas', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\comedor4p.jpg', 450000);
+(3, 'Comedor 2', 'Comedor para 6 personas', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\comedor6p.jpg', 500000);
+(4, 'Gavetero', 'Gavetero madera tradicional', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\gavetero.jpg', 575000);
+(5, 'Gavetero naranja', 'Gavetero color naranja', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\gaveteronaranja.jpg', 150000);
+(6, 'Gavetero Negro', 'Set de gaveteros negros', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\gaveterosnegros.jpg', 550000);
+(7, 'Mesa Noche', 'Mesa de noche', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\mesanoche.jpg', 50000);
+(8, 'Mesa Noche 2', 'Mesa de noche blanca', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\mesanocheblanca.jpg', 625000);
+(9, 'Mesa Noche 3', 'Mesa de noche rosada', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\mesanocherosada.jpg', 475000);
+(10, 'Sillón Azul', 'Sillón 2 personas azul', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\sillonazul.jpg', 550000);
+(11, 'Sillón Gris', 'Sillón de color gris, 2 personas', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\sillongris.jpg', 350000);
+insert into Producto (idProducto, nombre, descripcion, foto, precio) values (12, 'Sillón Negro', 'Sillón de color negro', 'C:\Users\Victor\Documents\TEC\Bases de Datos 2\Proyecto\Fotos\sillonnegro.jpg', 200000);
+*/
+
 import java.awt.Color;
 
 /**
@@ -39,13 +54,18 @@ public class Producto extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Producto");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setText("Nombre Producto");
 
         jButton1.setBackground(new java.awt.Color(0, 102, 51));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar al Carrito");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +77,6 @@ public class Producto extends javax.swing.JFrame {
 
         jLabel3.setText("Unidades Disponibles:");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -71,12 +90,21 @@ public class Producto extends javax.swing.JFrame {
         jLabel6.setText("Foto");
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Volver al catálogo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jButton5.setBackground(new java.awt.Color(0, 51, 102));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Mi Perfil");
+
+        jButton4.setBackground(new java.awt.Color(153, 0, 0));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Salir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,9 +114,6 @@ public class Producto extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,19 +121,24 @@ public class Producto extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
+                                .addGap(85, 85, 85)
+                                .addComponent(jButton4)
+                                .addGap(98, 98, 98)
+                                .addComponent(jButton5)
+                                .addGap(90, 90, 90)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
-                                .addContainerGap(24, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62))))))
+                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))))
+                        .addContainerGap(24, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,7 +169,10 @@ public class Producto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -217,6 +250,8 @@ public class Producto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

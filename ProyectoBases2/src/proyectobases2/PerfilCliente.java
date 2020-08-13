@@ -5,26 +5,22 @@
  */
 package proyectobases2;
 
-import java.awt.Color;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 
 /**
  *
  * @author Victor Alonso
  */
-public class RegistroCliente extends javax.swing.JFrame {
+public class PerfilCliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegistroCliente
+     * Creates new form PerfilCliente
      */
-    public RegistroCliente() {
+    public PerfilCliente() {
         initComponents();
-        this.getContentPane().setBackground(Color.white);
     }
 
     /**
@@ -59,18 +55,18 @@ public class RegistroCliente extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         RegistrarBoton = new javax.swing.JButton();
         etiquetaFoto = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1072, 690));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Registro de Cliente");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 12, -1, -1));
+        jLabel1.setText("Mi Perfil");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cédula");
@@ -121,13 +117,13 @@ public class RegistroCliente extends javax.swing.JFrame {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 195, -1, -1));
         jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 362, 200, -1));
 
-        jButton2.setText("Adjuntar");
+        jButton2.setText("Cambiar Foto");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(619, 190, 97, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(619, 190, 130, -1));
 
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,72 +133,56 @@ public class RegistroCliente extends javax.swing.JFrame {
         jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 244, 308, -1));
 
         RegistrarBoton.setBackground(new java.awt.Color(0, 102, 51));
-        RegistrarBoton.setText("Registrarme");
+        RegistrarBoton.setForeground(new java.awt.Color(255, 255, 255));
+        RegistrarBoton.setText("Ver Catálogo");
         RegistrarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarBotonActionPerformed(evt);
             }
         });
-        jPanel1.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 451, 108, -1));
+        jPanel1.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 140, -1));
 
         etiquetaFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(etiquetaFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 281, 137, 102));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 600));
+        jButton1.setBackground(new java.awt.Color(153, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, 80, -1));
 
-        setSize(new java.awt.Dimension(839, 643));
-        setLocationRelativeTo(null);
+        jButton3.setBackground(new java.awt.Color(0, 51, 102));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Guardar Cambios");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, 140, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 820, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    
-    
-    public void registro()
-    {
-        if(cedulaField==null || nombreField==null || apellido1Field==null 
-                || apellido2Field==null || correoField==null || telefonoField==null
-                || nacimientoField==null || passwordField==null)
-        {
-            JOptionPane.showMessageDialog(null, "Debe introducir todos los datos");
-        }else
-        {
-            String cedula = cedulaField.getText();
-            String nombre = nombreField.getText();
-            String apellido1 = apellido1Field.getText();
-            String apellido2 = apellido2Field.getText();
-            String correo = correoField.getText();
-            String telefono = telefonoField.getText();
-            String nacimiento = nacimientoField.getText();
-            String password = passwordField.getText();
-            
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    private void RegistrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarBotonActionPerformed
-        // TODO add your handling code here:
-        new Login().setVisible(true);
-        this.setVisible(false);
-        
-        
-        
-    }//GEN-LAST:event_RegistrarBotonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here: botón de adjuntar
@@ -216,12 +196,25 @@ public class RegistroCliente extends javax.swing.JFrame {
         jTextField10.setText(rutaarchivo);
         ImageIcon foto = new ImageIcon(rutaarchivo);
         etiquetaFoto.setIcon(foto);
-                
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void RegistrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarBotonActionPerformed
+        // TODO add your handling code here:
+        new CatálogoProducto().setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_RegistrarBotonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,23 +231,22 @@ public class RegistroCliente extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-                
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PerfilCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroCliente().setVisible(true);
+                new PerfilCliente().setVisible(true);
             }
         });
     }
@@ -267,7 +259,9 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField correoField;
     private javax.swing.JTextField direccionField;
     private javax.swing.JLabel etiquetaFoto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
